@@ -12,14 +12,14 @@ html, body {
 .calendar {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
+  display: block;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 50vh;
+  height: 64vh;
 }
 .calendar_left {
   background: #b3d400;
@@ -49,12 +49,10 @@ html, body {
 .calendar_right {
   background: #97b300;
   width: 350px;
-  height: 415px;
+  height: 300px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   position: relative;
-  -webkit-transform: scale(0.95) translateX(-10px);
-          transform: scale(0.95) translateX(-10px);
   z-index: 0;
 }
 .calendar_right .list {
