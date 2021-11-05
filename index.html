@@ -19,8 +19,13 @@
   <script src="js/index.js"></script>
   
 </head>
+
 <body>
-      <div class="flex h-screen w-full bg-white " x-data="{openMenu:1}">
+  <style> 
+    body{background-color: #b3d400;}
+
+  </style>  
+      <div class="flex h-screen w-full" x-data="{openMenu:1}">
         <!--Start SideBar-->
         <aside class="animate__animated animate__fadeInLeft w-16 relative z-20 flex-shrink-0  px-2 overflow-y-auto sm:block" style="background-color: #b3d400;">
           <div class="mb-6">
@@ -73,49 +78,50 @@
         <p class="text-2xl font-bold">식단 기록</p>
       </div>
 
+      <div class="grid grid-cols-1 gap-6 border-b-2 pb-5">
+        <div class='calendar' ng-controller='calendarController as calendar'>
 
-      <div class='calendar' ng-controller='calendarController as calendar'>
-
-        <div class='calendar_left'>
-          <div class='header'>
-            <i class='material-icons' ng-click='calendar.prev()'>navigate_before</i>
-            <h1>{{calendar.month}}</h1>
-            <i class='material-icons' ng-click='calendar.next()'>navigate_next</i>
+          <div class='calendar_left relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out '>
+            <div class='header'>
+              <i class='material-icons' ng-click='calendar.prev()'>navigate_before</i>
+              <h1>{{calendar.month}}</h1>
+              <i class='material-icons' ng-click='calendar.next()'>navigate_next</i>
+            </div>
+            <div class='days'>
+              <div class='day_item'>Mon</div>
+              <div class='day_item'>Tue</div>
+              <div class='day_item'>Wed</div>
+              <div class='day_item'>Thu</div>
+              <div class='day_item'>Fri</div>
+              <div class='day_item'>Sat</div>
+              <div class='day_item'>Sun</div>
+            </div>
+            <div class='dates'></div>
           </div>
-          <div class='days'>
-            <div class='day_item'>Mon</div>
-            <div class='day_item'>Tue</div>
-            <div class='day_item'>Wed</div>
-            <div class='day_item'>Thu</div>
-            <div class='day_item'>Fri</div>
-            <div class='day_item'>Sat</div>
-            <div class='day_item'>Sun</div>
+  
+          <div class='calendar_right relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out'>
+            <div class='list'>
+              <ul>
+                <li class='bounce-in' ng-repeat='events in calendar.events' ng-show='events.id === calendar.dataId'>
+                  <span class='type'>{{ events.type }} -</span>
+                  <span class='description'>{{ events.description }}</span>
+                </li>
+              </ul>
+            </div>
+            <form ng-submit='calendar.add()'>
+              <input ng-model='calendar.description' placeholder='식단을 적어 보세요!' type='text'>
+                <select ng-model='calendar.type' placeholder='calendar.type'>
+                  <option value='아침'>아침</option>
+                  <option value='점심'>점심</option>
+                  <option value='저녁'>저녁</option>          
+                </select>
+              </input>
+            </form>
           </div>
-          <div class='dates'></div>
+  
         </div>
 
-        <div class='calendar_right'>
-          <div class='list'>
-            <ul>
-              <li class='bounce-in' ng-repeat='events in calendar.events' ng-show='events.id === calendar.dataId'>
-                <span class='type'>{{ events.type }} -</span>
-                <span class='description'>{{ events.description }}</span>
-              </li>
-            </ul>
-          </div>
-          <form ng-submit='calendar.add()'>
-            <input ng-model='calendar.description' placeholder='식단을 적어 보세요!' type='text'>
-              <select ng-model='calendar.type' placeholder='calendar.type'>
-                <option value='아침'>아침</option>
-                <option value='점심'>점심</option>
-                <option value='저녁'>저녁</option>          
-              </select>
-            </input>
-          </form>
-        </div>
-
-      </div>
-
+     </div>
       
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 mt-3">
         <div class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out">
