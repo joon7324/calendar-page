@@ -1,4 +1,4 @@
-(function() {
+(window.onload=function() {
   angular
     .module('calendarApp', ['ngAnimate'])
     .controller('calendarController', calendarController);
